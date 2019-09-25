@@ -1,11 +1,13 @@
 package com.charlie.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.constraint.solver.widgets.Rectangle;
+
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -161,26 +163,22 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
             //@TODO: Draw the player
-            canvas.drawBitmap(this.player.getBitmap(), this.player.getXPosition(), this.player.getYPosition(), paintbrush);
+
+            Bitmap playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),
+                    R.drawable.player_ship);
+
+            canvas.drawBitmap(playerImage, 100, 120, paintbrush);
 
             //@TODO: Draw the enemy
-            canvas.drawBitmap(this.enemy.getBitmap(), this.enemy.getXPosition(), this.enemy.getYPosition(), paintbrush);
+
+            Bitmap enemyImage = BitmapFactory.decodeResource(this.getContext().getResources(),
+                    R.drawable.alien_ship2);
+
+            canvas.drawBitmap(enemyImage, 500, 120, paintbrush);
 
 
             // Show the hitboxes on player and enemy
-            paintbrush.setColor(Color.BLUE);
-            paintbrush.setStyle(Paint.Style.STROKE);
-            paintbrush.setStrokeWidth(5);
-            Rect playerHitbox = player.getHitbox();
-            canvas.drawRect(playerHitbox.left, playerHitbox.top, playerHitbox.right, playerHitbox.bottom, paintbrush);
 
-            Rect enemyHitbox = enemy.getHitbox();
-            canvas.drawRect(enemyHitbox.left, enemyHitbox.top, enemyHitbox.right, enemyHitbox.bottom, paintbrush);
-
-            // draw game stats
-            paintbrush.setTextSize(60);
-            paintbrush.setColor(Color.BLACK);
-            canvas.drawText("Lives remaining: " + lives, 100, 800, paintbrush);
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
@@ -206,11 +204,11 @@ public class GameEngine extends SurfaceView implements Runnable {
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
             // move player up
-            this.player.setDirection(1);
+
         }
         else if (userAction == MotionEvent.ACTION_UP) {
             // move player down
-            this.player.setDirection(0);
+
         }
 
         return true;
