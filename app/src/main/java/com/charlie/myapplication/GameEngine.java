@@ -36,7 +36,10 @@ public class GameEngine extends SurfaceView implements Runnable {
     Canvas canvas;
     Paint paintbrush;
 
+    Rect playerHitbox;
 
+
+    Bitmap playerImage;
 
     // -----------------------------------
     // GAME SPECIFIC VARIABLES
@@ -68,7 +71,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.screenWidth = w;
         this.screenHeight = h;
 
-
+       this.playerImage =  BitmapFactory.decodeResource(this.getContext().getResources(),
+                R.drawable.player_ship);
         this.printScreenInfo();
 
         // @TODO: Add your sprites
@@ -80,6 +84,9 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.enemyXPosition = 500;
         this.enemyYPosition =  120;
         // @TODO: Any other game setup
+
+
+        this.playerHitbox = new Rect(100,120, 100+ playerImage.getWidth(),120 +  playerImage.getHeight());
 
     }
 
@@ -154,7 +161,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         this.enemyXPosition = this.enemyXPosition - 5;
 
-        if(this.enemyXPosition <=0){
+        if(this.enemyXPosition <= 0){
             this.enemyXPosition = 1300;
             this.enemyYPosition = 120;
         }
@@ -176,10 +183,17 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             //@TODO: Draw the player
 
-            Bitmap playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),
-                    R.drawable.player_ship);
+
+
+            playerImage.getWidth();
+            playerImage.getHeight();
 
             canvas.drawBitmap(playerImage, playerX, playerY, paintbrush);
+
+            //drw the player's hitbox
+
+
+            canvas.drawRect(this.playerHitbox, paintbrush);
 
             //@TODO: Draw the enemy
 
