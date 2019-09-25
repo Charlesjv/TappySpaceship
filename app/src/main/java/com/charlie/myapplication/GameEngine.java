@@ -45,8 +45,12 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## SPRITES
     // ----------------------------
-    Player player;
-    Enemy enemy;
+int playerX;
+int playerY;
+int ememyXPosition;
+int enemyYPosition;
+
+
 
     // ----------------------------
     // ## GAME STATS
@@ -68,8 +72,13 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.printScreenInfo();
 
         // @TODO: Add your sprites
-        this.spawnPlayer();
-        this.spawnEnemyShips();
+
+
+        this.playerX = 100;
+        this.playerY = 120;
+
+        this.ememyXPosition = 500;
+        this.enemyYPosition =  120;
         // @TODO: Any other game setup
 
     }
@@ -83,14 +92,14 @@ public class GameEngine extends SurfaceView implements Runnable {
     private void spawnPlayer() {
         // put player in middle of screen --> you may have to adjust the Y position
         // depending on your device / emulator
-        player = new Player(this.getContext(), 100, (this.screenHeight-300) / 2);
+
 
     }
     private void spawnEnemyShips() {
         Random random = new Random();
 
         //@TODO: Place the enemies in a random location
-        enemy = new Enemy(this.getContext(), 1400, 100);
+
     }
 
     // ------------------------------
@@ -129,26 +138,9 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     public void updatePositions() {
         // @TODO: Update position of player
-        player.updatePlayerPosition();
-        // @TODO: Update position of enemy ships
-        enemy.updateEnemyPosition();
 
-        // @TODO: Collision detection between enemy and wall
-        if (enemy.getXPosition() <= 0) {
 
-            //reset the enemy's starting position to right side of screen
-            // you may need to adjust this number according to your device/emulator
-            enemy.setXPosition(this.screenWidth);
-        }
 
-        // @TODO: Collision detection between player and enemy
-        if (player.getHitbox().intersect(enemy.getHitbox())) {
-            // reduce lives
-            lives--;
-            // reset player to original position
-            player.setXPosition(100);
-            player.setYPosition((this.screenHeight-300) / 2);
-        }
     }
 
     public void redrawSprites() {
@@ -167,14 +159,14 @@ public class GameEngine extends SurfaceView implements Runnable {
             Bitmap playerImage = BitmapFactory.decodeResource(this.getContext().getResources(),
                     R.drawable.player_ship);
 
-            canvas.drawBitmap(playerImage, 100, 120, paintbrush);
+            canvas.drawBitmap(playerImage, playerX, playerY, paintbrush);
 
             //@TODO: Draw the enemy
 
             Bitmap enemyImage = BitmapFactory.decodeResource(this.getContext().getResources(),
                     R.drawable.alien_ship2);
 
-            canvas.drawBitmap(enemyImage, 500, 120, paintbrush);
+            canvas.drawBitmap(enemyImage, ememyXPosition, enemyYPosition, paintbrush);
 
 
             // Show the hitboxes on player and enemy
