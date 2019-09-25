@@ -37,10 +37,11 @@ public class GameEngine extends SurfaceView implements Runnable {
     Paint paintbrush;
 
     Rect playerHitbox;
+    Rect enemyHitbox;
 
 
     Bitmap playerImage;
-
+    Bitmap enemyImage;
     // -----------------------------------
     // GAME SPECIFIC VARIABLES
     // -----------------------------------
@@ -85,8 +86,15 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.enemyYPosition =  120;
         // @TODO: Any other game setup
 
+        this.enemyImage  = BitmapFactory.decodeResource(this.getContext().getResources(),
+                R.drawable.alien_ship2);
+
+        this.enemyHitbox = new Rect(500,120, 500 +enemyImage.getWidth(), 120+enemyImage.getHeight() );
 
         this.playerHitbox = new Rect(100,120, 100+ playerImage.getWidth(),120 +  playerImage.getHeight());
+
+
+
 
     }
 
@@ -161,6 +169,14 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         this.enemyXPosition = this.enemyXPosition - 5;
 
+        // Move the hitbox
+        this.enemyHitbox.left = this.enemyXPosition;
+        this.enemyHitbox.top = this.enemyYPosition;
+        this.enemyHitbox.right = this.enemyXPosition + this.enemyImage.getWidth();
+        this.enemyHitbox.bottom = this.enemyYPosition + this.enemyImage.getHeight();
+
+
+
         if(this.enemyXPosition <= 0){
             this.enemyXPosition = 1300;
             this.enemyYPosition = 120;
@@ -178,8 +194,9 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             // configure the drawing tools
             this.canvas.drawColor(Color.argb(255,255,255,255));
-            paintbrush.setColor(Color.WHITE);
-
+            paintbrush.setColor(Color.BLUE);
+            paintbrush.setStyle(Paint.Style.STROKE);
+            paintbrush.setStrokeWidth(5);
 
             //@TODO: Draw the player
 
@@ -197,12 +214,11 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             //@TODO: Draw the enemy
 
-            Bitmap enemyImage = BitmapFactory.decodeResource(this.getContext().getResources(),
-                    R.drawable.alien_ship2);
+
 
             canvas.drawBitmap(enemyImage, enemyXPosition, enemyYPosition, paintbrush);
 
-
+            canvas.drawRect(this.enemyHitbox, paintbrush);
             // Show the hitboxes on player and enemy
 
 
