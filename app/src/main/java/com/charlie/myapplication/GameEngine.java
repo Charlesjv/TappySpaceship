@@ -198,17 +198,21 @@ public class GameEngine extends SurfaceView implements Runnable {
     // USER INPUT FUNCTIONS
     // ------------------------------
 
+    String fingerAction = "";
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
             // move player up
+            fingerAction = "mouse down";
 
+            Log.d(TAG,"Player tapped the screen");
         }
         else if (userAction == MotionEvent.ACTION_UP) {
             // move player down
-
+            fingerAction = "Player lifted the finger";
+            Log.d(TAG,"Person lifted finger");
         }
 
         return true;
