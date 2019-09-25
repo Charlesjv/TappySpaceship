@@ -45,10 +45,10 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## SPRITES
     // ----------------------------
-int playerX;
-int playerY;
-int ememyXPosition;
-int enemyYPosition;
+    int playerX;
+    int playerY;
+    int enemyXPosition;
+    int enemyYPosition;
 
     String fingerAction = "";
 
@@ -77,7 +77,7 @@ int enemyYPosition;
         this.playerX = 100;
         this.playerY = 120;
 
-        this.ememyXPosition = 500;
+        this.enemyXPosition = 500;
         this.enemyYPosition =  120;
         // @TODO: Any other game setup
 
@@ -150,6 +150,16 @@ int enemyYPosition;
         }
 
 
+        // MAKE THE ENEMY MOVE
+
+        this.enemyXPosition = this.enemyXPosition - 5;
+
+        if(this.enemyXPosition <=0){
+            this.enemyXPosition = 1300;
+            this.enemyYPosition = 120;
+        }
+
+
 
     }
 
@@ -176,7 +186,7 @@ int enemyYPosition;
             Bitmap enemyImage = BitmapFactory.decodeResource(this.getContext().getResources(),
                     R.drawable.alien_ship2);
 
-            canvas.drawBitmap(enemyImage, ememyXPosition, enemyYPosition, paintbrush);
+            canvas.drawBitmap(enemyImage, enemyXPosition, enemyYPosition, paintbrush);
 
 
             // Show the hitboxes on player and enemy
