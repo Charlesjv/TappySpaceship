@@ -50,7 +50,7 @@ int playerY;
 int ememyXPosition;
 int enemyYPosition;
 
-
+    String fingerAction = "mouseup";
 
     // ----------------------------
     // ## GAME STATS
@@ -140,6 +140,16 @@ int enemyYPosition;
         // @TODO: Update position of player
 
 
+        if(this.fingerAction == "mousedown"){
+
+            this.playerY = this.playerY - 10;
+
+        }
+        if(this.fingerAction == "mouseup"){
+            this.playerY = this.playerY + 10;
+        }
+
+
 
     }
 
@@ -190,7 +200,7 @@ int enemyYPosition;
     // USER INPUT FUNCTIONS
     // ------------------------------
 
-    String fingerAction = "";
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
