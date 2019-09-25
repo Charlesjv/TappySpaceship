@@ -50,7 +50,7 @@ int playerY;
 int ememyXPosition;
 int enemyYPosition;
 
-    String fingerAction = "mouseup";
+    String fingerAction = "";
 
     // ----------------------------
     // ## GAME STATS
@@ -142,7 +142,7 @@ int enemyYPosition;
 
         if(this.fingerAction == "mousedown"){
 
-            this.playerY = this.playerY - 10;
+            this.playerY = this.playerY - 60;
 
         }
         if(this.fingerAction == "mouseup"){
@@ -207,13 +207,13 @@ int enemyYPosition;
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
             // move player up
-            fingerAction = "mouse down";
+            fingerAction = "mousedown";
 
             Log.d(TAG,"Player tapped the screen");
         }
         else if (userAction == MotionEvent.ACTION_UP) {
             // move player down
-            fingerAction = "Player lifted the finger";
+            fingerAction = "mouseup";
             Log.d(TAG,"Person lifted finger");
         }
 
