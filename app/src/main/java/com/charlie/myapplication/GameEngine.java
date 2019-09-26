@@ -38,10 +38,18 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     Rect playerHitbox;
     Rect enemyHitbox;
+    Rect enemyHitbox2;
 
 
     Bitmap playerImage;
-    Bitmap enemyImage;
+
+
+    Bitmap enemyImage2;
+
+    int enemyXPosition2;
+    int enemyYPosition2;
+
+
     // -----------------------------------
     // GAME SPECIFIC VARIABLES
     // -----------------------------------
@@ -51,6 +59,8 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     int playerX;
     int playerY;
+
+    Bitmap enemyImage;
     int enemyXPosition;
     int enemyYPosition;
 
@@ -84,15 +94,27 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         this.enemyXPosition = 500;
         this.enemyYPosition =  120;
+
+
+        this.enemyXPosition2 = 500;
+        this.enemyYPosition2 =  220;
         // @TODO: Any other game setup
 
         this.enemyImage  = BitmapFactory.decodeResource(this.getContext().getResources(),
                 R.drawable.alien_ship2);
 
+        this.enemyImage2  = BitmapFactory.decodeResource(this.getContext().getResources(),
+                R.drawable.alien_ship3);
+
+
         this.enemyHitbox = new Rect(500,120, 500 +enemyImage.getWidth(), 120+enemyImage.getHeight() );
 
         this.playerHitbox = new Rect(100,120, 100+ playerImage.getWidth(),120 +  playerImage.getHeight());
 
+
+
+
+        this.enemyHitbox2 = new Rect(500,120, 500 +enemyImage2.getWidth(), 120+enemyImage2.getHeight() );
 
 
 
@@ -178,9 +200,17 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
+        this.enemyXPosition2 = this.enemyXPosition2 - 5;
+
+        // Move the hitbox
+        this.enemyHitbox2.left = this.enemyXPosition2;
+        this.enemyHitbox2.top = this.enemyYPosition2;
+        this.enemyHitbox2.right = this.enemyXPosition2 + this.enemyImage2.getWidth();
+        this.enemyHitbox2.bottom = this.enemyYPosition2 + this.enemyImage2.getHeight();
+
         if(this.enemyXPosition <= 0){
-            this.enemyXPosition = 1300;
-            this.enemyYPosition = 120;
+            this.enemyXPosition = 800;
+            this.enemyYPosition = 100;
 
 
 
@@ -189,6 +219,27 @@ public class GameEngine extends SurfaceView implements Runnable {
             this.enemyHitbox.top = this.enemyYPosition;
             this.enemyHitbox.right = this.enemyXPosition + this.enemyImage.getWidth();
             this.enemyHitbox.bottom = this.enemyYPosition + this.enemyImage.getHeight();
+
+
+
+
+
+        }
+
+        if(this.enemyXPosition2 <= 0){
+            this.enemyXPosition2 = 800;
+            this.enemyYPosition2 = 220;
+
+
+
+
+            this.enemyHitbox2.left = this.enemyXPosition2;
+            this.enemyHitbox2.top = this.enemyYPosition2;
+            this.enemyHitbox2.right = this.enemyXPosition2 + this.enemyImage2.getWidth();
+            this.enemyHitbox2.bottom = this.enemyYPosition2 + this.enemyImage2.getHeight();
+
+
+
 
 
         }
@@ -248,6 +299,10 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             canvas.drawRect(this.enemyHitbox, paintbrush);
             // Show the hitboxes on player and enemy
+
+            canvas.drawBitmap(enemyImage2, enemyXPosition2, enemyYPosition2, paintbrush);
+
+            canvas.drawRect(this.enemyHitbox2, paintbrush);
 
 
             // lives
