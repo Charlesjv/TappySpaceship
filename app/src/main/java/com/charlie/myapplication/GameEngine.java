@@ -199,6 +199,15 @@ public class GameEngine extends SurfaceView implements Runnable {
         if (this.playerHitbox.intersect(this.enemyHitbox)){
             Log.d(TAG,"Enemy Colliding with the player");
 
+
+            // RESTART THE PLAYER
+            this.playerX = 100;
+            this.playerY = 120;
+            this.playerHitbox = new Rect(100,120, 100+ playerImage.getWidth(),120 +  playerImage.getHeight());
+
+
+
+
         }
 
 
