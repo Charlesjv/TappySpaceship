@@ -104,18 +104,6 @@ public class GameEngine extends SurfaceView implements Runnable {
         Log.d(TAG, "Screen (w, h) = " + this.screenWidth + "," + this.screenHeight);
     }
 
-    private void spawnPlayer() {
-        // put player in middle of screen --> you may have to adjust the Y position
-        // depending on your device / emulator
-
-
-    }
-    private void spawnEnemyShips() {
-        Random random = new Random();
-
-        //@TODO: Place the enemies in a random location
-
-    }
 
     // ------------------------------
     // GAME STATE FUNCTIONS (run, stop, start)
@@ -180,6 +168,16 @@ public class GameEngine extends SurfaceView implements Runnable {
         if(this.enemyXPosition <= 0){
             this.enemyXPosition = 1300;
             this.enemyYPosition = 120;
+
+
+
+
+            this.enemyHitbox.left = this.enemyXPosition;
+            this.enemyHitbox.top = this.enemyYPosition;
+            this.enemyHitbox.right = this.enemyXPosition + this.enemyImage.getWidth();
+            this.enemyHitbox.bottom = this.enemyYPosition + this.enemyImage.getHeight();
+
+
         }
 
 
