@@ -206,6 +206,7 @@ public class GameEngine extends SurfaceView implements Runnable {
             this.playerHitbox = new Rect(100,120, 100+ playerImage.getWidth(),120 +  playerImage.getHeight());
 
 
+            lives = lives-1;
 
 
         }
@@ -248,6 +249,13 @@ public class GameEngine extends SurfaceView implements Runnable {
             canvas.drawRect(this.enemyHitbox, paintbrush);
             // Show the hitboxes on player and enemy
 
+
+            // lives
+
+            paintbrush.setColor(Color.BLACK);
+            paintbrush.setTextSize(40);
+            paintbrush.setStrokeWidth(2);
+            canvas.drawText("Lives remaining: " +lives,220,90,paintbrush);
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
