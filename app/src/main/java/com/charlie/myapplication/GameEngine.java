@@ -161,7 +161,7 @@ public class GameEngine extends SurfaceView implements Runnable {
             this.playerHitbox.left = this.playerX;
             this.playerHitbox.top = this.playerY;
             this.playerHitbox.right = this.playerX + this.playerImage.getWidth();
-            this.playerHitbox.bottom = this.playerY +this.playerImage.getHeight();
+            this.playerHitbox.bottom = this.playerY + this.playerImage.getHeight();
 
         }
 
@@ -193,6 +193,13 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         }
 
+
+        // Check enemy colision between enemy and player
+
+        if (this.playerHitbox.intersect(this.enemyHitbox)){
+            Log.d(TAG,"Enemy Colliding with the player");
+
+        }
 
 
     }
