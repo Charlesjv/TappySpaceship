@@ -147,9 +147,22 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             this.playerY = this.playerY - 60;
 
+            this.playerHitbox.left = this.playerX;
+            this.playerHitbox.top = this.playerY;
+            this.playerHitbox.right = this.playerX + this.playerImage.getWidth();
+            this.playerHitbox.bottom = this.playerY +this.playerImage.getHeight();
+
+
         }
         if(this.fingerAction == "mouseup"){
             this.playerY = this.playerY + 10;
+
+
+            this.playerHitbox.left = this.playerX;
+            this.playerHitbox.top = this.playerY;
+            this.playerHitbox.right = this.playerX + this.playerImage.getWidth();
+            this.playerHitbox.bottom = this.playerY +this.playerImage.getHeight();
+
         }
 
 
